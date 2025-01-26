@@ -60,7 +60,7 @@ public class PostService {
 	}
 
 	private void checkAccess(SessionUser sessionUser, Post post) {
-		if (!Objects.equals(sessionUser.getId(), post.getId())) {
+		if (!Objects.equals(sessionUser.getId(), post.getUser().getId())) {
 			throw new CannotAccessException();
 		}
 	}
