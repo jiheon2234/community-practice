@@ -42,7 +42,7 @@ public class ReplyController {
 		@AuthenticationPrincipal SessionUser sessionUser,
 		@PathVariable Long replyId
 	) {
-		service.deleteReply(service, replyId);
+		service.deleteReply(replyId, sessionUser);
 		return ResponseEntity.ok().build();
 	}
 

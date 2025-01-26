@@ -16,6 +16,7 @@ import com.community.domain.reply.repository.ReplyRepository;
 import com.community.domain.user.entity.User;
 import com.community.domain.user.service.UserService;
 import com.community.global.config.security.dto.SessionUser;
+import com.community.global.exception.CannotAccessException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -59,8 +60,15 @@ public class ReplyService {
 
 	}
 
-	public void deleteReply(ReplyService service, Long replyId) {
+	private void checkAccess(SessionUser sessionUser, Reply reply) {
+		if (!sessionUser.getId().equals(reply.getUser().getId())) {
+			throw new CannotAccessException();
+		}
+	}
+
+	public void deleteReply(Long replyId, SessionUser sessionUser) {
 		Reply reply = findById(replyId);
+		checkAccess(sessionUser, reply);
 		repository.delete(reply);
 	}
 
