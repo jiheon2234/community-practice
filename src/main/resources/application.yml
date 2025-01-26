@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: community
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+server:
+  port: 8080
+
+jwt:
+  prefix: 'Bearer '
+  secret-key: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+  access-token-validity-in-seconds: 150000
+  refresh-token-validity-in-seconds: 259200
+  access-header: Authentication
+  refresh-header: Refresh
+
+
+springdoc:
+  version: 1.0.0
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+    disable-swagger-default-url: true
+    display-request-duration: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
